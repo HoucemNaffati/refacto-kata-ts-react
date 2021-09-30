@@ -46,7 +46,7 @@ So, at first view I would say that this comes from using `state.push`statements 
 
 I think we can stop analsing at this level :). I will pass to refactoring Step
 
-## Refoctoring
+## Refactoring the code
 
 1. Is there any unit tests?
 First at all, I search for unit tests. Unit tests gives us trust to refactor.
@@ -56,6 +56,14 @@ updated version of the selected view model (using the selector) from the store.
 I assume that redux is part of my core domain and I don't need to put abstraction on top of it
 Finally, since nothing is really I will just delete the existing tests and create new usecase and its unit tests suite
 
-2. first commit: refine structures/io and write tests
+2. First commit: refine structures/io and write tests
 I don't commit code that don't compile or with failing tests
 When changing structure, I rebuild the project after each change to let the transpiler guide my modifications 
+This may look like a big commit but was necessary to prepare the next steps
+after this commit we have a new structure with unit test of the usecase RetrieveDomains initialized with first test case:
+when we receive no domains from the server(empty array)
+
+3. TDD cycles
+here it goes, I imagined other scenarios, each scenario is followed by a new commit.
+I use test driven development for building the usecase and I let the tests guide the implementation of the algorithm.
+I tried to commit after each red->green->refactor cycle
