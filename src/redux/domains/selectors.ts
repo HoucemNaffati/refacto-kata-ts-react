@@ -1,5 +1,13 @@
-import { AppState } from '../store'
+import {AppState} from '../store'
 
-export function getDomains(state: AppState): string[] {
-  return state.domains
+export function getCountries(state: AppState): string[] {
+    return state.domains.countries
+}
+
+export function getClassifications(state: AppState): string[] {
+    return state.domains.classifications
+}
+
+export function getSubClassifications(state: AppState): string[] {
+    return state.domains.subClassifications
 }
