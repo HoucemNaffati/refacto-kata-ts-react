@@ -51,6 +51,18 @@ describe("testing retrieveDomains usecase", () => {
                 }
             });
         })
+
+        it("retrieves all domains' attributes when receiving two values and includes duplicates", () => {
+            domainsData = ["FR_NK-WOL","US_OK-WOK", 'FR_OK-NPP',];
+            store.dispatch(store.dispatch(receiveDomains(domainsData)))
+            verifyRetrieveDomains({
+                domains: {
+                    countries: ["FR","US"],
+                    classifications: ["NK","OK"],
+                    subClassifications: ["WOL","WOK","NPP"]
+                }
+            });
+        })
     }))
 
     function verifyRetrieveDomains(expectedState: AppState) {
