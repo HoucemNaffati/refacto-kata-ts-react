@@ -12,36 +12,24 @@ interface Props {
     subClassificationsOptions: string[],
 }
 
-class DomainFilter extends React.Component<Props, State> {
-    componentDidMount() {
-        const {countriesOptions, classificationsOptions, subClassificationsOptions} = this.props
-        this.state = {
-            countries: [],
-            classifications: [],
-            subClassifications: []
-        }
-
-
+class DomainSelect extends React.Component<{ data: string[], name: string }, { selected: string }> {
+    render() {
+        return <select name={this.props.name} multiple>
+            {this.props.data && this.props.data.map(country => (
+                <option value={country} key={country}>{country}</option>
+            ))}
+        </select>;
     }
+}
+
+class DomainFilter extends React.Component<Props, State> {
 
     render() {
         const {countriesOptions, classificationsOptions, subClassificationsOptions} = this.props;
         return (<>
-            <select name="countries" multiple>
-                {countriesOptions && countriesOptions.map(country => (
-                    <option value={country} key={country}>{country}</option>
-                ))}
-            </select>
-            <select name="classifications" multiple>
-                {classificationsOptions && classificationsOptions.map(classification => (
-                    <option value={classification} key={classification}>{classification}</option>
-                ))}
-            </select>
-            <select name="subClassifications" multiple>
-                {subClassificationsOptions && subClassificationsOptions.map(subClassification => (
-                    <option value={subClassification} key={subClassification}>{subClassification}</option>
-                ))}
-            </select>
+            <DomainSelect data={countriesOptions} name="countries"/>
+            <DomainSelect data={classificationsOptions} name="classifications"/>
+            <DomainSelect data={subClassificationsOptions} name="subClassifications"/>
         </>)
     }
 }
