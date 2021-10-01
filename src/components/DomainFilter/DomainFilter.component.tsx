@@ -1,9 +1,10 @@
 import React from 'react';
+import {DomainSelect} from "./DomainSelect";
 
 interface State {
-    countries: string[],
-    classifications: string[],
-    subClassifications: string[]
+    selectedCountry: string,
+    selectedClassification: string,
+    selectedSubClassification: string
 }
 
 interface Props {
@@ -12,24 +13,27 @@ interface Props {
     subClassificationsOptions: string[],
 }
 
-class DomainSelect extends React.Component<{ data: string[], name: string }, { selected: string }> {
-    render() {
-        return <select name={this.props.name} multiple>
-            {this.props.data && this.props.data.map(country => (
-                <option value={country} key={country}>{country}</option>
-            ))}
-        </select>;
-    }
-}
-
 class DomainFilter extends React.Component<Props, State> {
+    componentDidMount() {
+        this.setState({ selectedCountry: "", selectedClassification: "", selectedSubClassification: ""})
+    }
 
     render() {
         const {countriesOptions, classificationsOptions, subClassificationsOptions} = this.props;
         return (<>
-            <DomainSelect data={countriesOptions} name="countries"/>
-            <DomainSelect data={classificationsOptions} name="classifications"/>
-            <DomainSelect data={subClassificationsOptions} name="subClassifications"/>
+            <DomainSelect data={countriesOptions}
+                          name="countries"
+                          onChange={e => this.setState({...this.state, selectedCountry: e.target.value})}
+            />
+            <DomainSelect data={classificationsOptions}
+                          name="classifications"
+                          onChange={e => this.setState({...this.state, selectedClassification: e.target.value})}
+            />
+            <DomainSelect data={subClassificationsOptions}
+                          name="subClassifications"
+                          onChange={e => this.setState({...this.state, selectedSubClassification: e.target.value})}
+            />
+            <p> STATE: {JSON.stringify(this.state)}</p>
         </>)
     }
 }
