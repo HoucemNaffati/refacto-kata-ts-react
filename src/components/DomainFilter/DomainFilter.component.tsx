@@ -1,7 +1,7 @@
 import React from 'react';
-import CountriesSelect from "./CountriesSelect.container";
-import ClassificationSelect from "./ClassificationSelect.container";
-import SubClassificationSelect from "./SubClassificationSelect.container";
+import CountriesSelect from "../DomainSelect/CountriesSelect.container";
+import ClassificationSelect from "../DomainSelect/ClassificationSelect.container";
+import SubClassificationSelect from "../DomainSelect/SubClassificationSelect.container";
 
 interface State {
     selectedCountry: string,

@@ -1,6 +1,6 @@
 I tried to resume in this file the methodology I adapted when solving the KATA
 
-##1. Analysis Step
+## Analysis Step
 
 1. Architecture
 I first read the readme and then analysed the used architecture.
