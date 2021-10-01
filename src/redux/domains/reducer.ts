@@ -7,9 +7,17 @@ export function domainsReducer(
     state = initialState,
     action: DomainsAction
 ): DomainsState {
+    function SafelyRetrieveDomains() {
+        try {
+            return retrieveDomains(action.domains);
+        }catch{
+            return initialState;
+        }
+    }
+
     switch (action.type) {
         case RECEIVE_DOMAINS:
-            const newState = retrieveDomains(action.domains);
+            const newState = SafelyRetrieveDomains();
             return {
                 ...state,
                 countries: newState.countries,

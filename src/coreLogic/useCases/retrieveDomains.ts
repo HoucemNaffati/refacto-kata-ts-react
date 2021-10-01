@@ -1,10 +1,21 @@
 import {DomainsState} from "../../redux/domains/types";
 
-export function retrieveDomains(retrievedEncodedDomains: string[]): DomainsState {
+export function retrieveDomains(receivedEncodedDomains: string[]): DomainsState {
+    validateDate();
     return {
         countries: extractCountries(),
         classifications: extractClassifications(),
         subClassifications: extractSubClassifications()
+    }
+
+    function validateDate() {
+        receivedEncodedDomains.map(domain=>{
+            if(invalidDomainEncoding(domain))
+                throw Error('bad domain format')
+        })
+        function invalidDomainEncoding(domain: string) {
+            return domain.length !== 9 || domain[2] !== '_' || domain[5] !== '-';
+        }
     }
 
     function removeDuplicates(array: string[]) {
@@ -12,14 +23,14 @@ export function retrieveDomains(retrievedEncodedDomains: string[]): DomainsState
     }
 
     function extractCountries() {
-        return removeDuplicates(retrievedEncodedDomains.map(domain => domain.split('_')[0]));
+        return removeDuplicates(receivedEncodedDomains.map(domain => domain.split('_')[0]));
     }
 
     function extractClassifications() {
-        return removeDuplicates(retrievedEncodedDomains.map(domain => domain.split('_')[1].split('-')[0]));
+        return removeDuplicates(receivedEncodedDomains.map(domain => domain.split('_')[1].split('-')[0]));
     }
 
     function extractSubClassifications() {
-        return removeDuplicates(retrievedEncodedDomains.map(domain => domain.split('_')[1].split('-')[1]));
+        return removeDuplicates(receivedEncodedDomains.map(domain => domain.split('_')[1].split('-')[1]));
     }
 }
