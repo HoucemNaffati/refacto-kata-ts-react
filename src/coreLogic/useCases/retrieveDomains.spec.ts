@@ -77,6 +77,22 @@ describe("testing retrieveDomains usecase", () => {
                     }
                 });
             })
+
+            it("retrieves nothing when receiving several values containing a bad format", () => {
+                domainsData = ['US_OK-WOK',
+                    'FR_NK-WOL',
+                    'FR_OK-NPP',
+                    'EN_NK-NRP',
+                    'EN_BL*WOL'];
+                store.dispatch(store.dispatch(receiveDomains(domainsData)))
+                verifyRetrieveDomains({
+                    domains: {
+                        countries: [],
+                        classifications: [],
+                        subClassifications: []
+                    }
+                });
+            })
         }));
 
         function verifyRetrieveDomains(expectedState: AppState) {
