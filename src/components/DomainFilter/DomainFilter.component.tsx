@@ -1,5 +1,7 @@
 import React from 'react';
-import {DomainSelect} from "./DomainSelect";
+import CountriesSelect from "./CountriesSelect.container";
+import ClassificationSelect from "./ClassificationSelect.container";
+import SubClassificationSelect from "./SubClassificationSelect.container";
 
 interface State {
     selectedCountry: string,
@@ -7,32 +9,22 @@ interface State {
     selectedSubClassification: string
 }
 
-interface Props {
-    countriesOptions: string[],
-    classificationsOptions: string[],
-    subClassificationsOptions: string[],
-}
+type event = React.ChangeEvent<HTMLSelectElement>;
 
-class DomainFilter extends React.Component<Props, State> {
+class DomainFilter extends React.Component<{}, State> {
     componentDidMount() {
-        this.setState({ selectedCountry: "", selectedClassification: "", selectedSubClassification: ""})
+        this.setState({selectedCountry: "", selectedClassification: "", selectedSubClassification: ""})
     }
 
+    onCountryChange = (e: event) => this.setState({...this.state, selectedCountry: e.target.value});
+    onClassificationChange = (e: event) => this.setState({...this.state, selectedClassification: e.target.value});
+    onSubClassificationChange = (e: event) => this.setState({...this.state, selectedSubClassification: e.target.value});
+
     render() {
-        const {countriesOptions, classificationsOptions, subClassificationsOptions} = this.props;
         return (<>
-            <DomainSelect data={countriesOptions}
-                          name="countries"
-                          onChange={e => this.setState({...this.state, selectedCountry: e.target.value})}
-            />
-            <DomainSelect data={classificationsOptions}
-                          name="classifications"
-                          onChange={e => this.setState({...this.state, selectedClassification: e.target.value})}
-            />
-            <DomainSelect data={subClassificationsOptions}
-                          name="subClassifications"
-                          onChange={e => this.setState({...this.state, selectedSubClassification: e.target.value})}
-            />
+            <CountriesSelect name="countries" onChange={this.onCountryChange}/>
+            <ClassificationSelect name="classifications" onChange={this.onClassificationChange}/>
+            <SubClassificationSelect name="subClassifications" onChange={this.onSubClassificationChange}/>
             <p> STATE: {JSON.stringify(this.state)}</p>
         </>)
     }

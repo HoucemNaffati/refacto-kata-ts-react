@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-    data: string[],
+    options: string[],
     name: string,
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
@@ -9,7 +9,7 @@ interface Props {
 export class DomainSelect extends React.Component<Props, {}> {
     render() {
         return <select name={this.props.name} multiple onChange={this.props.onChange}>
-            {this.props.data && this.props.data.map(country => (
+            {this.props.options && this.props.options.map(country => (
                 <option value={country} key={country}>{country}</option>
             ))}
         </select>;
