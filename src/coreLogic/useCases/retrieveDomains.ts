@@ -1,16 +1,8 @@
 import {DomainsState} from "../../redux/domains/types";
 
 export function retrieveDomains(retrievedEncodedDomains: string[]): DomainsState {
-    if (retrievedEncodedDomains.length === 0)
-        return {
-            countries: [],
-            classifications: [],
-            subClassifications: []
-        }
-    else
-        return {
-            countries: ["FR"],
-            classifications: ["NK"],
-            subClassifications: ["WOL"]
-        }
+    const countries = retrievedEncodedDomains.map(domain => domain.split('_')[0]);
+    const classifications = retrievedEncodedDomains.map(domain => domain.split('_')[1].split('-')[0]);
+    const subClassifications = retrievedEncodedDomains.map(domain => domain.split('_')[1].split('-')[1]);
+    return {countries, classifications, subClassifications}
 }

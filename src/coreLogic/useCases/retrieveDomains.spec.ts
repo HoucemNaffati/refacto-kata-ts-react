@@ -27,7 +27,7 @@ describe("testing retrieveDomains usecase", () => {
         });
     }));
 
-    describe("when receiving a correct domain format", (() => {
+    describe("happy path", (() => {
         it("retrieves all domains' attributes when receiving a single value", () => {
             domainsData = ["FR_NK-WOL"];
             store.dispatch(store.dispatch(receiveDomains(domainsData)))
@@ -36,6 +36,18 @@ describe("testing retrieveDomains usecase", () => {
                     countries: ["FR"],
                     classifications: ["NK"],
                     subClassifications: ["WOL"]
+                }
+            });
+        })
+
+        it("retrieves all domains' attributes when receiving two values without duplicates", () => {
+            domainsData = ["FR_NK-WOL","US_OK-WOK"];
+            store.dispatch(store.dispatch(receiveDomains(domainsData)))
+            verifyRetrieveDomains({
+                domains: {
+                    countries: ["FR","US"],
+                    classifications: ["NK","OK"],
+                    subClassifications: ["WOL","WOK"]
                 }
             });
         })
