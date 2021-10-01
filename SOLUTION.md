@@ -67,3 +67,14 @@ when we receive no domains from the server(empty array)
 here it goes, I imagined other scenarios, each scenario is followed by a new commit.
 I use test driven development for building the usecase and I let the tests guide the implementation of the algorithm.
 I tried to commit after each red->green->refactor cycle
+
+4. UI integration:
+Now that I have my usecase tested, I integrate it as it is and I test on the browser(yeah i'am not a big fun of enzyme or react testing)
+those tests are usually fragile and breaks when changin ui details...So I write minimum
+Otherwise I use E2E testing using cypress
+(I adapted the enzyme test anyway ^^)
+
+5.Refactoring to reusable component:
+in the last step, I split the component into 3  separate Selects Components and I change the container logic into a composite component.
+I do this in separate step-by-step commits
+

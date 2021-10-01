@@ -19,7 +19,7 @@ export function retrieveDomains(receivedEncodedDomains: string[]): DomainsState 
     }
 
     function removeDuplicates(array: string[]) {
-        return [...new Set(array)]
+        return Array.from(new Set(array));
     }
 
     function extractCountries() {
