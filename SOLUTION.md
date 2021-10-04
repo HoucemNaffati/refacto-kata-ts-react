@@ -54,7 +54,7 @@ First at all, I search for unit tests. Unit tests gives us trust to refactor.
 - The reducer and selector tests can be combined into a usecase test that asserts directly that dispatching the action will result to a correct 
 updated version of the selected view model (using the selector) from the store.
 I assume that redux is part of my core domain and I don't need to put abstraction on top of it
-Finally, since nothing is really I will just delete the existing tests and create new usecase and its unit tests suite
+Finally, since nothing is really satisfying there, I will just delete the existing tests and create new usecase and its unit tests suite
 
 2. First commit: refine structures/io and write tests
 I don't commit code that don't compile or with failing tests
