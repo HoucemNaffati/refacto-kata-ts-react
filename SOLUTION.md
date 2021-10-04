@@ -1,4 +1,4 @@
-I tried to resume in this file the methodology I adapted when solving the KATA
+I tried to resume in this file the methodology I adopted when solving the KATA
 
 ## Analysis Step
 
